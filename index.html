@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Pembayaran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #f0f0f0, #a0a0a0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+        
+        .payment-section {
+            background: rgba(30, 30, 30, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .section-title i {
+            font-size: 1.8rem;
+            margin-right: 15px;
+            color: #4CAF50;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .payment-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .payment-logo {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-right: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .dana-logo {
+            background: linear-gradient(135deg, #1087dd, #0a6ebd);
+            color: white;
+        }
+        
+        .gopay-logo {
+            background: linear-gradient(135deg, #00AA13, #008A0F);
+            color: white;
+        }
+        
+        .payment-info {
+            flex: 1;
+        }
+        
+        .payment-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .payment-number {
+            font-size: 1.1rem;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        
+        .payment-holder {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+        }
+        
+        .copy-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-left: 10px;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .whatsapp-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .whatsapp-option {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .whatsapp-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .whatsapp-logo {
+            font-size: 3rem;
+            color: #25D366;
+            margin-bottom: 15px;
+        }
+        
+        .whatsapp-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .whatsapp-number {
+            font-size: 1.2rem;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin: 10px 0;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+        
+        .whatsapp-link {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .whatsapp-link:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+        
+        .channel-link {
+            display: inline-block;
+            background: #128C7E;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        
+        .channel-link:hover {
+            background: #075E54;
+            transform: scale(1.05);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(150%);
+            transition: transform 0.4s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .payment-method {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-logo {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .copy-btn {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Metode Pembayaran</h1>
+            <p class="subtitle">Pilih metode pembayaran yang tersedia di bawah ini</p>
+        </header>
+        
+        <section class="payment-section">
+            <div class="section-title">
+                <i class="fas fa-credit-card"></i>
+                <h2>Transfer Pembayaran</h2>
+            </div>
+            
+            <div class="payment-method">
+                <div class="payment-logo dana-logo">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-name">DANA</div>
+                    <div class="payment-number">083101099019</div>
+                    <div class="payment-holder">N/A: T** G****** S*********</div>
+                </div>
+                <button class="copy-btn" data-number="083101099019">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+            
+            <div class="payment-method">
+                <div class="payment-logo gopay-logo">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="payment-info">
+                    <div class="payment-name">GOPAY</div>
+                    <div class="payment-number">083181546883</div>
+                    <div class="payment-holder">N/A: T*** O*****</div>
+                </div>
+                <button class="copy-btn" data-number="083181546883">
+                    <i class="fas fa-copy"></i> Salin
+                </button>
+            </div>
+        </section>
+        
+        <section class="payment-section">
+            <div class="section-title">
+                <i class="fab fa-whatsapp"></i>
+                <h2>Hubungi Kami</h2>
+            </div>
+            
+            <div class="whatsapp-section">
+                <div class="whatsapp-option">
+                    <div class="whatsapp-logo">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="whatsapp-title">WhatsApp Personal</div>
+                    <div class="whatsapp-number">083101099019</div>
+                    <a href="https://wa.me/6283101099019" class="whatsapp-link" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Hubungi via WhatsApp
+                    </a>
+                </div>
+                
+                <div class="whatsapp-option">
+                    <div class="whatsapp-logo">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="whatsapp-title">Saluran WhatsApp</div>
+                    <p>Ikuti saluran resmi kami untuk informasi terbaru</p>
+                    <a href="https://whatsapp.com/channel/0029VbBULleIt5s4FjVykN3u" class="channel-link" target="_blank">
+                        <i class="fas fa-external-link-alt"></i> Kunjungi Saluran
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2023 Metode Pembayaran. Semua hak dilindungi.</p>
+        </footer>
+    </div>
+    
+    <div class="notification" id="notification">
+        Nomor berhasil disalin!
+    </div>
+    
+    <script>
+        // Fungsi untuk menyalin nomor ke clipboard
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const number = this.getAttribute('data-number');
+                navigator.clipboard.writeText(number).then(() => {
+                    showNotification();
+                });
+            });
+        });
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
